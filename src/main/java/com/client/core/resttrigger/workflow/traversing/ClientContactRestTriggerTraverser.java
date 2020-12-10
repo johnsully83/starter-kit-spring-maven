@@ -18,6 +18,14 @@ public class ClientContactRestTriggerTraverser extends AbstractTriggerTraverser<
 
 	public ClientContactRestTriggerTraverser(Integer entityID, Map<String, Object> valuesChanged, Integer updatingUserID, boolean edit, BullhornData bullhornData) {
 		super(new ClientContactRestTriggerHelper(entityID, valuesChanged, updatingUserID, bullhornData), edit);
+
+		if(fieldWasUpdated(traverser.getTriggerHelper(),"customDate1")) {
+			CorporateUser corporateUser=traverser.getTriggerHelper().getUpdatingUser();
+
+			if(isInvalidUserType(corporateUser.getUserType())) {
+				traverser.addFormResponse ("error:invalid.user.type","You dont have permission to update this field");
+			}
+		}
 	}
 
 }
