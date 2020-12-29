@@ -24,8 +24,24 @@ public class SetLastCalled extends NoteEventTask {
 
     @Override
     public void handle(NoteEventTraverser traverser) {
-        if(traverser.getEventType() == EventType.INSERTED) {
+        if(traverser.getEventType() == EventType.INSERTED || traverser.getEventType() == EventType.UPDATED) {
             
+            var note = traverser.getScheduledTaskHelper.getEntity();
+
+            String[] act = {"BD Call","Sourcing Call","Recruiting Call","Prescreen","Cold Call","Prospect Call","Client Call","Outbound Call","Inbound Call"};
+
+            for(int i=0;i<act.length;i++)
+            {
+                if(note.action.Equals(act[i]))
+                {
+                    var currentDate = new Date();
+                   
+                    API.appBridge.httpGET('/entity/ClientContact/${API.globals.userID}').then(response => {
+                        
+                          API.setValue('customDate1',currentDate);
+                        
+                }
+            }
         }
     }
     
