@@ -19,6 +19,13 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/*
+  This code was obviously copied from one of the recorded calls we had, as it has no imports and is missing significant pieces of the business logic
+  e.g. the code references CandidateOwnershipActivityService and CandidateOwnershipSettings but those files don't exist in this repo, nor are they imported...so this file would not compile
+  
+  This must be done over from scratch.  You can use this file as a reference, but should never be directly coppying code word for word.
+  This does not indicate any level of understanding of the code or automation.
+*/
 @Service
 public class CandidateOwnershipMaintenance implements Runnable {
 
